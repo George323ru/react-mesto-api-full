@@ -1,0 +1,12 @@
+.element__image {
+  width: 282px;
+  height: 282px;
+  object-fit: cover;
+  object-position: center;
+  cursor: pointer;
+  transition: .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+.element__image:hover {
+  opacity: .6;
+}

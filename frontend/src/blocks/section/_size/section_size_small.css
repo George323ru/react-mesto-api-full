@@ -1,0 +1,7 @@
+@media screen and (max-width: 660px) {
+
+  .section_size_small {
+    max-width: 320px;
+  }
+
+}
