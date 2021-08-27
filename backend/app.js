@@ -13,10 +13,9 @@ const auth = require('./middlewares/auth')
 const NotFoundError = require('./errors/not-found-err')
 const { celebrate, Joi, errors } = require('celebrate');
 const cors = require('cors')
-
 const { PORT = 3000 } = process.env
-
 const app = express()
+app.use(cors());
 app.use(helmet())
 app.disable('x-powered-by')
 
@@ -38,7 +37,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 //   'gusevgeorgy.students.nomoredomains.club',
 // ];
 
-app.use(cors());
+
 // app.use(function (req, res, next) {
 //   const { origin } = req.headers;
 //   const requestHeaders = req.headers['access-control-request-headers'];
