@@ -33,8 +33,8 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 
 // Массив доменов, с которых разрешены кросс-доменные запросы
 const allowedCors = [
-  'https://praktikum.tk',
-  'http://praktikum.tk',
+  'api.gusevgeorgiy.students.nomoredomains.monster',
+  'gusevgeorgy.students.nomoredomains.club',
   'localhost:3000'
 ];
 
