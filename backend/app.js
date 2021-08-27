@@ -15,6 +15,7 @@ const { celebrate, Joi, errors } = require('celebrate');
 const cors = require('cors')
 const { PORT = 3000 } = process.env
 const app = express()
+
 const corsOptions = {
   "origin": "gusevgeorgy.students.nomoredomains.club",
   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
@@ -22,7 +23,7 @@ const corsOptions = {
   "optionsSuccessStatus": 204
 }
 
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 app.use(helmet())
 app.disable('x-powered-by')
 
