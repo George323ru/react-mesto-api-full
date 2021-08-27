@@ -15,7 +15,14 @@ const { celebrate, Joi, errors } = require('celebrate');
 const cors = require('cors')
 const { PORT = 3000 } = process.env
 const app = express()
+const corsOptions = {
+  "origin": "*",
+  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+  "preflightContinue": false,
+  "optionsSuccessStatus": 204
+}
 
+app.use(cors(corsOptions));
 app.use(helmet())
 app.disable('x-powered-by')
 
@@ -23,11 +30,6 @@ app.use(cookieParser())
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-
-const corsOptions = {
-  origin: 'gusevgeorgy.students.nomoredomains.club',
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,
@@ -42,7 +44,7 @@ app.get('/crash-test', cors(), () => {
   }, 0);
 });
 
-app.post('/signup', cors(corsOptions),
+app.post('/signup',
   celebrate({
     body: Joi.object().keys({
       email: Joi.string().required().email(),
@@ -57,8 +59,8 @@ app.post('/signin',
     }),
   }), login)
 
-app.use('/users', cors(corsOptions), auth, usersRoutes)
-app.use('/cards', cors(corsOptions), auth, cardsRoutes)
+app.use('/users', auth, usersRoutes)
+app.use('/cards', auth, cardsRoutes)
 
 app.use('*', () => {
   throw new NotFoundError('Запрашиваемый ресурс не найден')
