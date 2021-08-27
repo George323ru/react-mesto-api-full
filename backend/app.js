@@ -22,7 +22,7 @@ const corsOptions = {
   "optionsSuccessStatus": 204
 }
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 app.use(helmet())
 app.disable('x-powered-by')
 
@@ -38,7 +38,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useUnifiedTopology: true,
 })
 
-app.get('/crash-test', cors(), () => {
+app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
