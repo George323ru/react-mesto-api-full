@@ -12,6 +12,7 @@ const {
 const auth = require('./middlewares/auth')
 const NotFoundError = require('./errors/not-found-err')
 const { celebrate, Joi, errors } = require('celebrate');
+const cors = require('cors');
 
 const { PORT = 3000 } = process.env
 
@@ -30,6 +31,8 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useFindAndModify: false,
   useUnifiedTopology: true,
 })
+
+app.use(cors());
 
 app.post('/signup',
   celebrate({
