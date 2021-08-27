@@ -31,30 +31,11 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useUnifiedTopology: true,
 })
 
-// // Массив доменов, с которых разрешены кросс-доменные запросы
-// const allowedCors = [
-//   'api.gusevgeorgiy.students.nomoredomains.monster',
-//   'gusevgeorgy.students.nomoredomains.club',
-// ];
-
-
-// app.use(function (req, res, next) {
-//   const { origin } = req.headers;
-//   const requestHeaders = req.headers['access-control-request-headers'];
-//   if (allowedCors.includes(origin)) {
-//     const { method } = req;
-//     const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
-
-//     if (method === 'OPTIONS') {
-//       res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
-//       res.header('Access-Control-Allow-Headers', requestHeaders);
-//     }
-
-//     res.header('Access-Control-Allow-Origin', "*");
-//   }
-
-//   next();
-// });
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 
 app.post('/signup',
   celebrate({
