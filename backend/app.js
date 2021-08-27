@@ -33,9 +33,8 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 
 // Массив доменов, с которых разрешены кросс-доменные запросы
 const allowedCors = [
-  'api.gusevgeorgiy.students.nomoredomains.monster',
+  //'api.gusevgeorgiy.students.nomoredomains.monster',
   'gusevgeorgy.students.nomoredomains.club',
-  'localhost:3000'
 ];
 
 app.use(function (req, res, next) {
