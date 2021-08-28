@@ -31,9 +31,11 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useCreateIndex: true,
   useFindAndModify: false,
   useUnifiedTopology: true,
-}).then(() => (app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}`)
-})))
+}).then(() => {
+  app.listen(PORT, () => {
+    console.log(`App listening on port ${PORT}`)
+  })
+})
 
 app.use(requestLogger);
 
