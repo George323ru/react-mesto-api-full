@@ -23,8 +23,8 @@ app.disable('x-powered-by')
 
 app.use(cookieParser())
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
+// app.use(bodyParser.json())
+// app.use(bodyParser.urlencoded({ extended: true }))
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,
@@ -48,6 +48,7 @@ app.post('/signup',
       password: Joi.string().required(),
     }),
   }), createUser)
+
 app.post('/signin',
   celebrate({
     body: Joi.object().keys({
