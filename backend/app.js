@@ -16,33 +16,6 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const cors = require('cors')
 const { PORT = 3000 } = process.env
 const app = express()
-
-// // const corsOptions = {
-// //   "origin": "https://gusevgeorgy.students.nomoredomains.club",
-// //   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-// //   "preflightContinue": false,
-// //   "optionsSuccessStatus": 204
-// // }
-
-// const corsAllowed = [
-//   'https://gusevgeorgy.students.nomoredomains.club',
-//   'https://localhost:3000',
-// ];
-
-// app.use(
-//   cors({
-//     credentials: true,
-//     origin(origin, callback) {
-//       if (corsAllowed.includes(origin) || !origin) {
-//         callback(null, true);
-//       } else {
-//         callback(new Error('Not allowed by CORS'));
-//       }
-//     },
-//   }),
-// );
-
-// app.options('*', cors());
 app.use(cors())
 
 app.use(helmet())
