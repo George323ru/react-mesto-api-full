@@ -109,7 +109,7 @@ class Api {
 
 const api = new Api({
   address: "https://api.gusevgeorgiy.students.nomoredomains.monster",
-  headers: {
+  token: {
     "Content-Type": "application/json",
   },
 });
