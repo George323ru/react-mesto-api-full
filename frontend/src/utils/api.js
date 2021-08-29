@@ -109,7 +109,9 @@ class Api {
 
 const api = new Api({
   address: "https://api.gusevgeorgiy.students.nomoredomains.monster",
-  token: "59e52716-d825-43a0-9822-26cced8398ed",
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
 export default api;
