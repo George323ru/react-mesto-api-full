@@ -1,7 +1,6 @@
 class Api {
   constructor({ address, token }) {
     this.address = address;
-    this.token = token;
   }
 
   _checkingResponse(res) {
@@ -14,7 +13,6 @@ class Api {
   getCards() {
     return fetch(`${this.address}/cards`, {
       headers: {
-        authorization: this.token,
       },
     }).then(this._checkingResponse);
   }
@@ -22,7 +20,6 @@ class Api {
   getUserInfo() {
     return fetch(`${this.address}/users/me`, {
       headers: {
-        authorization: this.token,
       },
     }).then(this._checkingResponse);
   }
@@ -31,7 +28,6 @@ class Api {
     return fetch(`${this.address}/users/me`, {
       method: "PATCH",
       headers: {
-        authorization: this.token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -45,7 +41,6 @@ class Api {
     return fetch(`${this.address}/cards`, {
       method: "POST",
       headers: {
-        authorization: this.token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -59,7 +54,6 @@ class Api {
     return fetch(`${this.address}/cards/${cardId}`, {
       method: "DELETE",
       headers: {
-        authorization: this.token,
         "Content-Type": "application/json",
       },
     }).then(this._checkingResponse);
@@ -69,7 +63,6 @@ class Api {
     return fetch(`${this.address}/cards/likes/${cardId}`, {
       method: "PUT",
       headers: {
-        authorization: this.token,
         "Content-Type": "application/json",
       },
     }).then(this._checkingResponse);
@@ -79,7 +72,6 @@ class Api {
     return fetch(`${this.address}/cards/likes/${cardId}`, {
       method: "DELETE",
       headers: {
-        authorization: this.token,
         "Content-Type": "application/json",
       },
     }).then(this._checkingResponse);
@@ -97,7 +89,6 @@ class Api {
     return fetch(`${this.address}/users/me/avatar`, {
       method: "PATCH",
       headers: {
-        authorization: this.token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -109,7 +100,6 @@ class Api {
 
 const api = new Api({
   address: "https://gusevgeorgy.students.nomoredomains.club",
-  token: "59e52716-d825-43a0-9822-26cced8398ed",
 });
 
 export default api;
