@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://gusevgeorgy.students.nomoredomains.club';
+export const BASE_URL = 'https://api.gusevgeorgiy.students.nomoredomains.monster';
 
 const checkRes = (res) => res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
 
