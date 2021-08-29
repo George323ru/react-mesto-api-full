@@ -1,0 +1,32 @@
+.authorization__input {
+  width: 100%;
+  margin-top: 15px;
+  min-height: 30px;
+  outline: none;
+
+  border: 0;
+  border-bottom: 2px solid #cccccc;
+  background-color: black;
+
+  font-family: Inter, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.21;
+  color: #cccccc;
+}
+
+::-webkit-input-placeholder {
+  color: #cccccc;
+}
+::-moz-placeholder {
+  color: #cccccc;
+} /* Firefox 19+ */
+:-moz-placeholder {
+  color: #cccccc;
+} /* Firefox 18- */
+:-ms-input-placeholder {
+  color: #cccccc;
+}
+
+.authorization__input:first-of-type {
+  margin-top: 0px;
+}

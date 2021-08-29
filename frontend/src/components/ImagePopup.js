@@ -1,18 +1,18 @@
-function ImagePopup({ name, onClose, card }) {
+const ImagePopup = ({ onClose, card }) => {
   return (
-    <div className={`popup popup_type_${name} ${card ? "popup_opened" : ""}`}>
+    <div className={`popup ${card ? "popup_opened" : ""}`}>
       <div className='popup__wrapPic'>
         <img
-          className={`popup__picture popup__picture_type_${name}`}
-          src={card ? card.link : ""}
-          alt={card ? card.name : ""}
+          className='popup__picture'
+          src={card?.link}
+          alt={card?.name}
         />
-        <p className={`popup__placeName popup__placeName_type_${name}`}>
+        <p className='popup__placeName'>
           {card ? card.name : ""}
         </p>
         <button
           onClick={onClose}
-          className={`popup__closeButton popup__closeButton_type_${name}`}
+          className='popup__closeButton'
         />
       </div>
     </div>

@@ -1,0 +1,13 @@
+.header__burger-button {
+  display: none;
+  transition-duration: 0.25s;
+}
+
+@media screen and (max-width: 660px) {
+  .header__burger-button {
+    display: flex;
+    margin-right: 27px;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
