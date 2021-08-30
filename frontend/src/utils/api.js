@@ -13,6 +13,7 @@ class Api {
   getCards() {
     return fetch(`${this.address}/cards`, {
       headers: {
+        "Content-Type": "application/json",
       },
     }).then(this._checkingResponse);
   }
@@ -20,6 +21,7 @@ class Api {
   getUserInfo() {
     return fetch(`${this.address}/users/me`, {
       headers: {
+        "Content-Type": "application/json",
       },
     }).then(this._checkingResponse);
   }
