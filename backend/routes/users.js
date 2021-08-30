@@ -12,7 +12,7 @@ router.get('/', getUsers)
 router.get('/me', getCurrentUser)
 router.get('/:userId',
   celebrate({
-    body: Joi.object().keys({
+    params: Joi.object().keys({
       id: Joi.string().required().length(24).hex(),
     }),
   }), getUser)
