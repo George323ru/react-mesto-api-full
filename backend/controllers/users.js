@@ -1,5 +1,4 @@
 const { NODE_ENV, JWT_SECRET } = process.env
-require('dotenv').config()
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const User = require('../models/user')
@@ -32,12 +31,13 @@ const createUser = (req, res, next) => {
     })
     .catch(err => {
       if (err.name === 'ValidationError') {
-        throw new NotFoundError('Переданы некорректные данные при создании пользователя')
+        next(new NotFoundError('Переданы некорректные данные при создании пользователя'))
       } else if (err.name === 'MongoError' && err.code === 11000) {
-        throw new ConflictError('Произошла ошибка при создании пользователя')
+        next(new ConflictError('Произошла ошибка при создании пользователя'))
+      } else {
+        next(err)
       }
     })
-    .catch(next)
 }
 
 const getUser = (req, res, next) => {
@@ -46,12 +46,13 @@ const getUser = (req, res, next) => {
     .then(user => res.send(user))
     .catch(err => {
       if (err.message === 'NotValidID') {
-        throw new NotFoundError({ message: 'Пользователь по указанному _id не найден' })
+        next(new NotFoundError({ message: 'Пользователь по указанному _id не найден' }))
       } else if (err.name === 'CastError') {
-        throw new BadRequestError('Переданы2 некорректные данные при запросе _id')
+        next(new BadRequestError('Переданы некорректные данные при запросе _id'))
+      } else {
+        next(err)
       }
     })
-    .catch(next)
 }
 
 const getCurrentUser = (req, res, next) => {
@@ -60,12 +61,14 @@ const getCurrentUser = (req, res, next) => {
     .then(user => res.send(user))
     .catch(err => {
       if (err.message === 'NotValidID') {
-        throw new NotFoundError('Пользователь по указанному _id не найден')
+        next(new NotFoundError('Пользователь по указанному _id не найден'))
       } else if (err.name === 'CastError') {
-        throw new BadRequestError('Переданы некорректные данные при запросе _id')
+        next(new BadRequestError('Переданы некорректные данные при запросе _id'))
+      }
+      else {
+        next(err)
       }
     })
-    .catch(next)
 }
 
 const getUsers = (req, res, next) => {
@@ -84,12 +87,13 @@ const patchUser = (req, res, next) => {
     .then(user => res.send(user))
     .catch(err => {
       if (err.message === 'NotValidID') {
-        throw new NotFoundError('Пользователь по указанному _id не найден')
+        next(new NotFoundError('Пользователь по указанному _id не найден'))
       } else if (err.name === 'ValidationError') {
-        throw new BadRequestError('Ошибка при изменении данных пользователя')
+        next(new BadRequestError('Ошибка при изменении данных пользователя'))
+      } else {
+        next(err)
       }
     })
-    .catch(next)
 }
 
 const patchUserAvatar = (req, res, next) => {
@@ -102,12 +106,13 @@ const patchUserAvatar = (req, res, next) => {
     .then(user => res.send(user))
     .catch(err => {
       if (err.message === 'NotValidID') {
-        throw new NotFoundError('Пользователь по указанному _id не найден')
+        next(new NotFoundError('Пользователь по указанному _id не найден'))
       } else if (err.name === 'ValidationError') {
-        throw new BadRequestError('Переданы некорректные данные при изменении аватара')
+        next(new BadRequestError('Переданы некорректные данные при изменении аватара'))
+      } else {
+        next(err)
       }
     })
-    .catch(next)
 }
 
 const login = (req, res, next) => {

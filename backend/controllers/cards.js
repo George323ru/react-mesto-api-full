@@ -9,7 +9,7 @@ const createCard = (req, res, next) => {
     .then(card => res.send(card))
     .catch(err => {
       if (err.name === 'ValidationError') {
-        throw new BadRequestError('Переданы некорректные данные при создании карточки')
+        next(new BadRequestError('Переданы некорректные данные при создании карточки'))
       }
     })
     .catch(next)
@@ -23,18 +23,22 @@ const getCards = (req, res, next) => {
 
 const deleteCard = (req, res, next) => {
   Card.findById(req.params.cardId)
+    .orFail(new Error('NotValidID'))
     .then(card => {
       if ((card === null) && (card.owner.toString() !== req.user._id)) {
-        throw new ForbiddenError('Не хватает прав для удаления карточки')
+        next(new ForbiddenError('Не хватает прав для удаления карточки'))
       }
       Card.findByIdAndDelete(req.params.cardId)
         .then(data => res.send(data))
         .catch(next)
     })
-    .catch(() => {
-      throw new NotFoundError('Произошла ошибка')
+    .catch(err => {
+      if (err.message === 'NotValidID') {
+        next(new NotFoundError('Карточка с указанным _id не найдена'))
+      } else {
+        next(err)
+      }
     })
-    .catch(next)
 }
 
 const putCardLike = (req, res, next) => {
@@ -45,9 +49,11 @@ const putCardLike = (req, res, next) => {
     .then(card => res.send(card))
     .catch(err => {
       if (err.message === 'NotValidID') {
-        throw new NotFoundError('Карточка с указанным _id не найдена')
+        next(new NotFoundError('Карточка с указанным _id не найдена'))
       } else if (err.name === 'CastError') {
-        throw new BadRequestError('Переданы некорректные данные при отправке лайка')
+        next(new BadRequestError('Переданы некорректные данные при отправке лайка'))
+      } else {
+        next(err)
       }
     })
     .catch(next)
@@ -61,9 +67,11 @@ const deleteCardLike = (req, res, next) => {
     .then(card => res.send(card))
     .catch(err => {
       if (err.message === 'NotValidID') {
-        throw new NotFoundError('Карточка с указанным _id не найдена')
+        next(new NotFoundError('Карточка с указанным _id не найдена'))
       } else if (err.name === 'CastError') {
-        throw new BadRequestError('Переданы некорректные данные при удалении лайка')
+        next(new BadRequestError('Переданы некорректные данные при удалении лайка'))
+      } else {
+        next(err)
       }
     })
     .catch(next)
