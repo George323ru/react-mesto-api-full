@@ -7,7 +7,7 @@ const BadRequestError = require('../errors/bad-request-err')
 const ConflictError = require('../errors/conflict-err')
 const AuthError = require('../errors/auth-err')
 
-const { NODE_ENV, JWT_SECRET = 'secret-key' } = process.env
+const { NODE_ENV, JWT_SECRET } = process.env
 
 const createUser = (req, res, next) => {
   const {
