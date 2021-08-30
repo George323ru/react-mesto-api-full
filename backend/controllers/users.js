@@ -64,8 +64,7 @@ const getCurrentUser = (req, res, next) => {
         next(new NotFoundError('Пользователь по указанному _id не найден'))
       } else if (err.name === 'CastError') {
         next(new BadRequestError('Переданы некорректные данные при запросе _id'))
-      }
-      else {
+      } else {
         next(err)
       }
     })
@@ -123,7 +122,7 @@ const login = (req, res, next) => {
       const token = jwt.sign(
         { _id: user._id },
         NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
-        { expiresIn: '7d' }
+        { expiresIn: '7d' },
       )
 
       // res
