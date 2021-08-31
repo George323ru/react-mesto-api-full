@@ -72,6 +72,7 @@ const App = () => {
         });
         if (data) {
           localStorage.setItem("jwt", data.token);
+          api.setItemToken(data.token);
         }
         setLoggedIn(true);
         history.push("/");

@@ -1,6 +1,7 @@
 class Api {
   constructor({ address, token }) {
     this.address = address;
+    this._token = token;
   }
 
   _checkingResponse(res) {
@@ -14,6 +15,7 @@ class Api {
     return fetch(`${this.address}/cards`, {
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${this._token}`,
       },
     }).then(this._checkingResponse);
   }
@@ -22,6 +24,7 @@ class Api {
     return fetch(`${this.address}/users/me`, {
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${this._token}`
       },
     }).then(this._checkingResponse);
   }
@@ -31,6 +34,7 @@ class Api {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${this._token}`,
       },
       body: JSON.stringify({
         name: name,
@@ -102,6 +106,7 @@ class Api {
 
 const api = new Api({
   address: "https://api.gusevgeorgiy.students.nomoredomains.monster",
+  token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTJlMmNhYjRhNGZmNDEwM2NjZjMzNTQiLCJpYXQiOjE2MzA0MzMyNzMsImV4cCI6MTYzMTAzODA3M30.ybwegCzdDsMaasq58bC20d7h9OmR3KjTNY_IXPJlzO0"
 });
 
 export default api;
