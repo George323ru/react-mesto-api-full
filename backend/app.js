@@ -23,10 +23,12 @@ const app = express()
 app.use(helmet())
 app.disable('x-powered-by')
 
-app.use(cookieParser())
+// app.use(cookieParser())
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+
+
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,
