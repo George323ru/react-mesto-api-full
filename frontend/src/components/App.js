@@ -55,8 +55,8 @@ const App = () => {
     auth
       .register(email, password)
       .then((res) => {
+        console.log(res)
         const { data } = res;
-        console.log(data)
         setUserData({
           id: data._id,
           email: data.email,
