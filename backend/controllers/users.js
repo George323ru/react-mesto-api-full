@@ -19,7 +19,7 @@ const createUser = (req, res, next) => {
   User.findOne({ email })
     .then((data) => {
       if (data) {
-        next(new ConflictError('Пользователь с таким email уже существует' + err.message))
+        next(new ConflictError('Пользователь с таким email уже существует'))
       }
       return bcrypt.hash(password, 10);
     })
@@ -42,7 +42,7 @@ const createUser = (req, res, next) => {
       if (err.name === 'ValidationError') {
         next(new NotFoundError('Переданы некорректные данные при создании пользователя'))
       } else if (err.name === 'MongoError' && err.code === 11000) {
-        next(new ConflictError('Произошла ошибка при создании пользователя'))
+        next(new ConflictError('Произошла ошибка при создании пользователя' + err.message))
       } else {
         next(err)
       }
