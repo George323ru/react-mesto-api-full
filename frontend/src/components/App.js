@@ -110,13 +110,15 @@ const App = () => {
 
   // Получаем данные о пользователе и карточках
   useEffect(() => {
-    Promise.all([api.getUserInfo(), api.getCards()])
-      .then(([userInfo, cardData]) => {
-        console.log(userInfo);
-        setCurrentUser(userInfo);
-        setCards(cardData);
-      })
-      .catch((err) => console.log("Ошибка при получении данных, " + err));
+    if (loggedIn) {
+      Promise.all([api.getUserInfo(), api.getCards()])
+        .then(([userInfo, cardData]) => {
+          console.log(userInfo);
+          setCurrentUser(userInfo);
+          setCards(cardData);
+        })
+        .catch((err) => console.log("Ошибка при получении данных, " + err));
+    }
   }, [loggedIn]);
 
   const handleCardLike = ({ cardId, likes }) => {
