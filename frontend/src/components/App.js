@@ -56,9 +56,9 @@ const App = () => {
       .register(email, password)
       .then((res) => {
         console.log(res)
-        const { email, } = res;
+        const { email, _id } = res;
         setUserData({
-          id: data._id,
+          id: _id,
           email: email,
         });
         setRegister(true);
