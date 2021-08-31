@@ -34,6 +34,34 @@ const App = () => {
 
   const handleError = () => (err) => console.error(err);
 
+  // Проверяем токен при загрузке страницы
+  useEffect(() => {
+    checkToken();
+  }, []);
+
+  const checkToken = () => {
+    const jwt = localStorage.getItem("jwt");
+
+    if (jwt) {
+      auth
+        .checkToken(jwt)
+        .then((res) => {
+          const { data } = res;
+
+          setUserData({
+            id: data._id,
+            email: data.email,
+          });
+          setLoggedIn(true);
+          history.push("/");
+        })
+        .catch(handleError);
+    } else {
+      setLoggedIn(false);
+      console.log('Пустой токен');
+    }
+  };
+
   const handleLogin = ({ email, password }) => {
     auth
       .authorize(email, password)
@@ -71,28 +99,6 @@ const App = () => {
       });
   };
 
-  const checkToken = () => {
-    const jwt = localStorage.getItem("jwt");
-
-    if (jwt) {
-      auth
-        .checkToken(jwt)
-        .then((res) => {
-          const { data } = res;
-
-          setUserData({
-            id: data._id,
-            email: data.email,
-          });
-          setLoggedIn(true);
-          history.push("/");
-        })
-        .catch(handleError);
-    } else {
-      setLoggedIn(false);
-    }
-  };
-
   const handleLogOut = () => {
     setUserData({
       id: "",
@@ -102,11 +108,6 @@ const App = () => {
     setLoggedIn(false);
     history.push("/sign-in");
   };
-
-  // Проверяем токен при загрузке страницы
-  useEffect(() => {
-    checkToken();
-  }, []);
 
   // Получаем данные о пользователе и карточках
   useEffect(() => {
