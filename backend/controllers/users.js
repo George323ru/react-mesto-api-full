@@ -1,4 +1,4 @@
-const { NODE_ENV, JWT_SECRET} = process.env
+const { NODE_ENV, JWT_SECRET } = process.env
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const User = require('../models/user')
@@ -26,7 +26,10 @@ const createUser = (req, res, next) => {
     }))
     .then(user => {
       res.send({
-        name: user.name, about: user.about, avatar: user.avatar, email: user.email,
+        name: user.name,
+        about: user.about,
+        avatar: user.avatar,
+        email: user.email,
       })
     })
     .catch(err => {
