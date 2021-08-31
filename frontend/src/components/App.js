@@ -52,8 +52,6 @@ const App = () => {
   };
 
   const handleRegister = ({ email, password }) => {
-    console.log(email);
-    console.log(password);
     auth
       .register(email, password)
       .then((res) => {
