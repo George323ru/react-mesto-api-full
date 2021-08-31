@@ -13,14 +13,16 @@ const auth = (req, res, next) => {
   const token = authorization.replace('Bearer ', '')
   let payload
   try {
-    payload = jwt.verify(token, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret')
+    payload = jwt.verify(token, 'secret-key-is-here')
   } catch (err) {
     throw new AuthError('Необходима авторизиция')
   }
 
-  req.user = payload // записываем пейлоуд в объект запроса
+  req.user = payload
 
   next()
 }
 
 module.exports = auth
+
+// NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret'
