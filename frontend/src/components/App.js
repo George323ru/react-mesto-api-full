@@ -117,7 +117,7 @@ const App = () => {
         setCards(cardData);
       })
       .catch((err) => console.log("Ошибка при получении данных, " + err));
-  }, []);
+  }, [loggedIn]);
 
   const handleCardLike = ({ cardId, likes }) => {
     // Снова проверяем, есть ли уже лайк на этой карточке
