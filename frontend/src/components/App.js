@@ -56,10 +56,10 @@ const App = () => {
       .register(email, password)
       .then((res) => {
         console.log(res)
-        const { data } = res;
+        const { email, } = res;
         setUserData({
           id: data._id,
-          email: data.email,
+          email: email,
         });
         setRegister(true);
         setInfoTooltipOpen(true);
