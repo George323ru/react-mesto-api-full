@@ -76,6 +76,7 @@ class Api {
   }
 
   putLike(cardId) {
+    console.log(cardId)
     return fetch(`${this.address}/cards/likes/${cardId}`, {
       method: "PUT",
       headers: {
