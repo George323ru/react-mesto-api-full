@@ -116,7 +116,7 @@ class Api {
 
 const api = new Api({
   address: "https://api.gusevgeorgiy.students.nomoredomains.monster",
-  token: this._token
+  token: ""
 });
 
 export default api;
