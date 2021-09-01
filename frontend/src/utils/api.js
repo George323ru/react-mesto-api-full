@@ -75,6 +75,14 @@ class Api {
     }).then(this._checkingResponse);
   }
 
+  changeLikeCardStatus(cardId, isLiked) {
+    if (isLiked) {
+      return this.putLike(cardId);
+    } else {
+      return this.deleteLike(cardId);
+    }
+  }
+
   putLike(cardId) {
     console.log(cardId)
     return fetch(`${this.address}/cards/${cardId}/likes`, {
@@ -94,14 +102,6 @@ class Api {
         "Authorization": `Bearer ${this._token}`,
       },
     }).then(this._checkingResponse);
-  }
-
-  changeLikeCardStatus(cardId, isLiked) {
-    if (isLiked) {
-      return this.putLike(cardId);
-    } else {
-      return this.deleteLike(cardId);
-    }
   }
 
   patchUpdateUserAvatar(acceptAvatar) {
