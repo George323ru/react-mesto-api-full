@@ -209,9 +209,6 @@ const App = () => {
       );
   };
 
-  // if (loggedIn === undefined) {
-  //   return <div>Loading</div>;
-  // }
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className='body'>
