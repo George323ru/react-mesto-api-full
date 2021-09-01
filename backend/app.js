@@ -2,7 +2,6 @@ require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
-const cookieParser = require('cookie-parser')
 const helmet = require('helmet')
 const cors = require('cors')
 const { celebrate, Joi, errors } = require('celebrate')
@@ -22,8 +21,6 @@ const app = express()
 
 app.use(helmet())
 app.disable('x-powered-by')
-
-// app.use(cookieParser())
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
