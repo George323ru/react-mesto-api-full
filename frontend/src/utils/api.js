@@ -11,6 +11,11 @@ class Api {
     return Promise.reject(`Ошибка ${res.status}`);
   }
 
+  setItemToken(token) {
+    console.log(token)
+    this._token = token
+  }
+
   getCards() {
     return fetch(`${this.address}/cards`, {
       headers: {
@@ -24,7 +29,7 @@ class Api {
     return fetch(`${this.address}/users/me`, {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${this._token}`
+        "Authorization": `Bearer ${this._token}`
       },
     }).then(this._checkingResponse);
   }
@@ -48,6 +53,7 @@ class Api {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${this._token}`,
       },
       body: JSON.stringify({
         name: name,
@@ -61,6 +67,7 @@ class Api {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${this._token}`,
       },
     }).then(this._checkingResponse);
   }
@@ -70,6 +77,7 @@ class Api {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${this._token}`,
       },
     }).then(this._checkingResponse);
   }
@@ -79,6 +87,7 @@ class Api {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${this._token}`,
       },
     }).then(this._checkingResponse);
   }
@@ -96,6 +105,7 @@ class Api {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${this._token}`,
       },
       body: JSON.stringify({
         avatar: acceptAvatar,
@@ -106,7 +116,7 @@ class Api {
 
 const api = new Api({
   address: "https://api.gusevgeorgiy.students.nomoredomains.monster",
-  token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTJlMmNhYjRhNGZmNDEwM2NjZjMzNTQiLCJpYXQiOjE2MzA0MzMyNzMsImV4cCI6MTYzMTAzODA3M30.ybwegCzdDsMaasq58bC20d7h9OmR3KjTNY_IXPJlzO0"
+  token: this._token
 });
 
 export default api;
