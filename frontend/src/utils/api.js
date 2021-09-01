@@ -77,32 +77,43 @@ class Api {
 
   changeLikeCardStatus(cardId, isLiked) {
     if (isLiked) {
-      return this.putLike(cardId);
+      return fetch(`${this.address}/cards/${cardId}/likes`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${this._token}`,
+        },
+      }).then(this._checkingResponse);
     } else {
-      return this.deleteLike(cardId);
+      return fetch(`${this.address}/cards/${cardId}/likes`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${this._token}`,
+        },
+      }).then(this._checkingResponse);
     }
   }
 
-  putLike(cardId) {
-    console.log(cardId)
-    return fetch(`${this.address}/cards/${cardId}/likes`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${this._token}`,
-      },
-    }).then(this._checkingResponse);
-  }
+  // putLike(cardId) {
+  //   return fetch(`${this.address}/cards/${cardId}/likes`, {
+  //     method: "PUT",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       "Authorization": `Bearer ${this._token}`,
+  //     },
+  //   }).then(this._checkingResponse);
+  // }
 
-  deleteLike(cardId) {
-    return fetch(`${this.address}/cards/${cardId}/likes`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${this._token}`,
-      },
-    }).then(this._checkingResponse);
-  }
+  // deleteLike(cardId) {
+  //   return fetch(`${this.address}/cards/${cardId}/likes`, {
+  //     method: "DELETE",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       "Authorization": `Bearer ${this._token}`,
+  //     },
+  //   }).then(this._checkingResponse);
+  // }
 
   patchUpdateUserAvatar(acceptAvatar) {
     return fetch(`${this.address}/users/me/avatar`, {
