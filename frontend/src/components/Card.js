@@ -24,22 +24,20 @@ function Card({
   };
 
   const currentUserContex = useContext(CurrentUserContext);
-
+  console.log(currentUserContex._id)
   // Определяем, являемся ли мы владельцем текущей карточки
   const isOwn = owner._id === currentUserContex._id;
 
   // Создаём переменную, которую после зададим в `className` для кнопки удаления
-  const cardDeleteButtonClassName = `element__delete-button ${
-    isOwn ? "element__delete-button_visible" : "element__delete-button_hidden"
-  }`;
+  const cardDeleteButtonClassName = `element__delete-button ${isOwn ? "element__delete-button_visible" : "element__delete-button_hidden"
+    }`;
 
   // Определяем, есть ли у карточки лайк, поставленный текущим пользователем
   const isLiked = likes.some((i) => i._id === currentUserContex._id);
 
   // Создаём переменную, которую после зададим в `className` для кнопки лайка
-  const cardLikeButtonClassName = `element__likeButton ${
-    isLiked ? "element__likeButton_active" : " "
-  }`;
+  const cardLikeButtonClassName = `element__likeButton ${isLiked ? "element__likeButton_active" : " "
+    }`;
 
   return (
     <li className='element'>
