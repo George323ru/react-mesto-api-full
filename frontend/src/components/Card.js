@@ -24,8 +24,7 @@ function Card({
   };
 
   const currentUserContex = useContext(CurrentUserContext);
-  console.log(owner)
-  console.log(currentUserContex)
+
   // Определяем, являемся ли мы владельцем текущей карточки
   const isOwn = owner === currentUserContex._id;
 
