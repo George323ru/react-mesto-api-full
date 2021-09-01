@@ -87,7 +87,7 @@ class Api {
   }
 
   deleteLike(cardId) {
-    return fetch(`${this.address}/cards/likes/${cardId}`, {
+    return fetch(`${this.address}/cards/${cardId}/likes`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
