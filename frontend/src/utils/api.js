@@ -12,8 +12,11 @@ class Api {
   }
 
   setItemToken(token) {
-    console.log(token)
     this._token = token
+  }
+
+  removeItemToken() {
+    this._token = ""
   }
 
   getCards() {

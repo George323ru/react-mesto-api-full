@@ -106,6 +106,7 @@ const App = () => {
       email: "",
     });
     localStorage.removeItem("jwt");
+    api.removeItemToken();
     setLoggedIn(false);
     history.push("/sign-in");
   };
