@@ -37,6 +37,7 @@ const App = () => {
   // Проверяем токен при загрузке страницы
   useEffect(() => {
     checkToken();
+    // eslint-disable-next-line
   }, []);
 
   const checkToken = () => {
