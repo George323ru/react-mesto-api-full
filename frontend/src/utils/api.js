@@ -20,6 +20,7 @@ class Api {
   }
 
   getCards() {
+    console.log(this._token)
     return fetch(`${this.address}/cards`, {
       headers: {
         "Content-Type": "application/json",

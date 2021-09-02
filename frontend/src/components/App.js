@@ -47,7 +47,7 @@ const App = () => {
       auth
         .checkToken(jwt)
         .then((res) => {
-          console.log(res._id)
+          console.log(res.email)
 
           setUserData({
             id: res._id,
