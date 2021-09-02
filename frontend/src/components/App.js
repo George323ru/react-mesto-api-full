@@ -117,7 +117,6 @@ const App = () => {
     if (loggedIn) {
       Promise.all([api.getUserInfo(), api.getCards()])
         .then(([userInfo, cardData]) => {
-          console.log(userInfo);
           setCurrentUser(userInfo);
           setCards(cardData);
         })
