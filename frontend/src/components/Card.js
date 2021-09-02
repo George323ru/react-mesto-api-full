@@ -31,7 +31,7 @@ function Card({
   // Создаём переменную, которую после зададим в `className` для кнопки удаления
   const cardDeleteButtonClassName = `element__delete-button ${isOwn ? "element__delete-button_visible" : "element__delete-button_hidden"
     }`;
-  console.log(likes)
+
   // Определяем, есть ли у карточки лайк, поставленный текущим пользователем
   const isLiked = likes.some(i => i === currentUserContex._id);
 

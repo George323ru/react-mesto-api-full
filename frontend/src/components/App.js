@@ -127,7 +127,7 @@ const App = () => {
 
   const handleCardLike = ({ cardId, likes }) => {
     // Снова проверяем, есть ли уже лайк на этой карточке
-    const isLiked = likes.some((i) => i._id === currentUser._id);
+    const isLiked = likes.some((i) => i === currentUser._id);
 
     api
       .changeLikeCardStatus(cardId, !isLiked)
