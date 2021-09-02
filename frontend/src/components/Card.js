@@ -33,10 +33,7 @@ function Card({
     }`;
   console.log(likes)
   // Определяем, есть ли у карточки лайк, поставленный текущим пользователем
-  const isLiked = likes.some(i => {
-    console.log(i._id)
-    i._id === currentUserContex._id
-  });
+  const isLiked = likes.some(i => i._id === currentUserContex._id);
 
   // Создаём переменную, которую после зададим в `className` для кнопки лайка
   const cardLikeButtonClassName = `element__likeButton ${isLiked ? "element__likeButton_active" : " "
