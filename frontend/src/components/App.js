@@ -48,13 +48,10 @@ const App = () => {
         .checkToken(jwt)
         .then((res) => {
           console.log(res)
-          const { data } = res;
-
-          console.log(data._id)
 
           setUserData({
-            id: data._id,
-            email: data.email,
+            id: res._id,
+            email: res.email,
           });
           setLoggedIn(true);
           history.push("/");
