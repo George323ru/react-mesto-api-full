@@ -47,10 +47,11 @@ const App = () => {
       auth
         .checkToken(jwt)
         .then((res) => {
-          const { _id, email } = res;
+          const { data } = res;
+
           setUserData({
-            id: _id,
-            email: email,
+            id: data._id,
+            email: data.email,
           });
           setLoggedIn(true);
           history.push("/");
